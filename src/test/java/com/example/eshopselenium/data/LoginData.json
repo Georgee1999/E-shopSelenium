@@ -1,15 +1,12 @@
 [
   {
     "email": "frank0@gmail.com",
-    "password": "Georgesmith1",
-    "product": "ZARA COAT 3"
+    "password": "Georgesmith1"
   },
-
 
   {
     "email": "john007@gmail.com",
-    "password": "Georgesmith1",
-    "product": "ADIDAS ORIGINAL"
+    "password": "Georgesmith1"
   }
 
 ]

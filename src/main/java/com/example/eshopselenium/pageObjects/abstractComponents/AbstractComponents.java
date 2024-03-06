@@ -1,9 +1,7 @@
 package com.example.eshopselenium.pageObjects.abstractComponents;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,8 +19,15 @@ public class AbstractComponents {
 
     public void waitForChangeHover(WebElement element,String cssProperty, String expectedValue) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.attributeToBe(element,cssProperty,expectedValue));
+        wait.until(ExpectedConditions.attributeToBe(element, cssProperty, expectedValue));
     }
+
+    public void waitForElementToAppear(String url){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.urlContains(url));
+    }
+
+
 
 
 }

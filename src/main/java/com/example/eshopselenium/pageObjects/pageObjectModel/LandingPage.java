@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,6 +78,15 @@ public class LandingPage extends AbstractComponents {
         //Thread.sleep(2000);
         waitForChangeHover(registerButton,"background-color","rgba(253, 36, 45, 1)");
         return registerButton.getCssValue("background-color");
+    }
+
+ public ProductCatalogue loginAplication(String email, String password){
+        fieldForEmail.sendKeys(email);
+        fieldForPassword.sendKeys(password);
+        loginButton.click();
+        ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+        waitForElementToAppear("https://rahulshettyacademy.com/client/dashboard/dash");
+        return productCatalogue;
     }
 
 
