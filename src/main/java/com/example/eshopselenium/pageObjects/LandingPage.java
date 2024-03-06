@@ -3,8 +3,11 @@ package com.example.eshopselenium.pageObjects;
 import com.example.eshopselenium.pageObjects.abstractComponents.AbstractComponents;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +15,6 @@ import java.util.List;
 public class LandingPage extends AbstractComponents {
 
     WebDriver driver;
-
 
     public LandingPage(WebDriver driver) {
         super(driver);
@@ -39,9 +41,10 @@ public class LandingPage extends AbstractComponents {
 
     @FindBy(id = "userPassword")
     WebElement fieldForPassword;
-
     @FindBy(css = "a[class='forgot-password-link']")
     WebElement forgotPassword;
+    @FindBy(className = "login-wrapper-footer-text")
+    WebElement registerLink;
 
     List<WebElement> enableElements;
 
@@ -59,7 +62,7 @@ public class LandingPage extends AbstractComponents {
     }
 
     public Boolean isEnable() {
-        enableElements = Arrays.asList(loginButton, registerButton, forgotPassword, fieldForEmail, fieldForPassword);
+        enableElements = Arrays.asList(loginButton, registerButton, forgotPassword, fieldForEmail, fieldForPassword,registerLink);
         return enableElements.stream().allMatch(WebElement::isEnabled);
     }
 
@@ -70,6 +73,19 @@ public class LandingPage extends AbstractComponents {
     public String getTextOfFieldForPassword() {
         return fieldForPassword.getAttribute("placeholder");
     }
+    public String getRegisterLinkText(){
+        return registerLink.getText();
+    }
+    public String hoverButton(){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(registerButton).build().perform();
+        //Thread.sleep(2000);
+        waitForChangeHover(registerButton,"background-color","rgba(253, 36, 45, 1)");
+        return registerButton.getCssValue("background-color");
+    }
+
+
+
 
 
 }
