@@ -1,2 +1,4 @@
-package com.example.eshopselenium.testComponents;public class BaseTest {
+package com.example.eshopselenium.testComponents;
+
+public class BaseTest {
 }
