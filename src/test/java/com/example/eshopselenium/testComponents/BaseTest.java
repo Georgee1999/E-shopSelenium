@@ -41,7 +41,7 @@ public class BaseTest {
            //     options.addArguments("headless");
            // }
             driver = new ChromeDriver(options);
-            driver.manage().window().setSize(new Dimension(1440,900)); // Fullscreen
+            driver.manage().window().maximize();//.setSize(new Dimension(1440,900));// Fullscreen
         } else if (browserName.equals("firefox")) {
             //Firefox
         } else if (browserName.equals("edge")) {
