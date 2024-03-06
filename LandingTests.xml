@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="All Test Suite">
+    <groups>
+        <run>
+            <include name="UI"/>
+        </run>
+    </groups>
+
+    <test  thread-count="3" name="UI Tests">
+        <classes>
+            <class name="com.example.eshopselenium.tests.UITestOfLPTest">
+                <methods>
+                    <include name="visibleTextOfElements"/>
+                    <include name="areElementsEnabled"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

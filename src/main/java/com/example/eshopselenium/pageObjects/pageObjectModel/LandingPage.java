@@ -1,4 +1,4 @@
-package com.example.eshopselenium.pageObjects;
+package com.example.eshopselenium.pageObjects.pageObjectModel;
 
 import com.example.eshopselenium.pageObjects.abstractComponents.AbstractComponents;
 import org.openqa.selenium.WebDriver;
@@ -45,9 +45,7 @@ public class LandingPage extends AbstractComponents {
     WebElement forgotPassword;
     @FindBy(className = "login-wrapper-footer-text")
     WebElement registerLink;
-
     List<WebElement> enableElements;
-
 
     public String getTextOfLoginTittle() {
         return loginTitle.getText();
@@ -83,6 +81,9 @@ public class LandingPage extends AbstractComponents {
         waitForChangeHover(registerButton,"background-color","rgba(253, 36, 45, 1)");
         return registerButton.getCssValue("background-color");
     }
+
+
+
 
 
 
