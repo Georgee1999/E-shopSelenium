@@ -6,9 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.swing.text.StyledEditorKit;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LandingPage extends AbstractComponents {
 
@@ -17,10 +16,11 @@ public class LandingPage extends AbstractComponents {
 
     public LandingPage(WebDriver driver) {
         super(driver);
-        this.driver=driver;
-        PageFactory.initElements(driver,this);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
-    public void goTo(){
+
+    public void goTo() {
         driver.get("https://rahulshettyacademy.com/client");
     }
 
@@ -43,23 +43,33 @@ public class LandingPage extends AbstractComponents {
     @FindBy(css = "a[class='forgot-password-link']")
     WebElement forgotPassword;
 
+    List<WebElement> enableElements;
 
 
-    public String getTextOfLoginTittle(){
+    public String getTextOfLoginTittle() {
         return loginTitle.getText();
     }
-    public String getTextOfLoginButton(){
-        return loginButton.getAttribute("value");
-    }
-    public Boolean isEnable(){
-        Boolean match = null;
-        if (loginButton.isEnabled() && registerButton.isEnabled()){
-             match = true;
-        }
-        return match;
+
+    public String getTextOfForgotPassword() {
+        return forgotPassword.getText();
     }
 
-    public
+    public String getTextOfLoginButton() {
+        return loginButton.getAttribute("value");
+    }
+
+    public Boolean isEnable() {
+        enableElements = Arrays.asList(loginButton, registerButton, forgotPassword, fieldForEmail, fieldForPassword);
+        return enableElements.stream().allMatch(WebElement::isEnabled);
+    }
+
+    public String getTextOfFieldForEmail() {
+        return fieldForEmail.getAttribute("placeholder");
+    }
+
+    public String getTextOfFieldForPassword() {
+        return fieldForPassword.getAttribute("placeholder");
+    }
 
 
 }
