@@ -46,7 +46,12 @@ public class LandingPage extends AbstractComponents {
     List<WebElement> enableElements;
     @FindBy(xpath = "//div[@class='form-group mb-4'] //div[@class='invalid-feedback']/div")
     WebElement passwordErrorMessage;
-    @FindBy(xpath = "//div[@id='toast-container']/div")
+    @FindBy(xpath = "//div[text()='*Email is required']")
+    WebElement emailErrorMessage;
+
+
+    //div[aria-label='Incorrect email or password.']
+    @FindBy(css = "div[aria-label='Incorrect email or password.']")
     WebElement errorPopup;
 
 
@@ -63,7 +68,7 @@ public class LandingPage extends AbstractComponents {
     }
 
     public Boolean isEnable() {
-        enableElements = Arrays.asList(loginButton, registerButton, forgotPassword, fieldForEmail, fieldForPassword,registerLink);
+        enableElements = Arrays.asList(loginButton, registerButton, forgotPassword, fieldForEmail, fieldForPassword, registerLink);
         return enableElements.stream().allMatch(WebElement::isEnabled);
     }
 
@@ -74,18 +79,20 @@ public class LandingPage extends AbstractComponents {
     public String getTextOfFieldForPassword() {
         return fieldForPassword.getAttribute("placeholder");
     }
-    public String getRegisterLinkText(){
+
+    public String getRegisterLinkText() {
         return registerLink.getText();
     }
-    public String hoverButton(){
+
+    public String hoverButton() {
         Actions actions = new Actions(driver);
         actions.moveToElement(registerButton).build().perform();
         //Thread.sleep(2000);
-        waitForChangeHover(registerButton,"background-color","rgba(253, 36, 45, 1)");
+        waitForChangeHover(registerButton, "background-color", "rgba(253, 36, 45, 1)");
         return registerButton.getCssValue("background-color");
     }
 
- public ProductCatalogue loginAplication(String email, String password){
+    public ProductCatalogue loginAplication(String email, String password) {
         fieldForEmail.sendKeys(email);
         fieldForPassword.sendKeys(password);
         loginButton.click();
@@ -93,22 +100,43 @@ public class LandingPage extends AbstractComponents {
         waitForElementToAppear("https://rahulshettyacademy.com/client/dashboard/dash");
         return productCatalogue;
     }
- public String emptyPassword(String email,String password){
+
+    public String invalidLogin(String email, String password) {
         fieldForEmail.sendKeys(email);
         fieldForPassword.sendKeys(password);
         loginButton.click();
-        return passwordErrorMessage.getText();
- }
-    public String invalidPassword(String email,String password){
-        fieldForEmail.sendKeys(email);
-        fieldForPassword.sendKeys(password);
-        loginButton.click();
+        waitForElementIsVisible(errorPopup);
         return errorPopup.getText();
     }
 
+    public String emptyPassword(String email) {
+        fieldForEmail.sendKeys(email);
+        //fieldForPassword.sendKeys(password);
+        loginButton.click();
+        return passwordErrorMessage.getText();
+    }
 
+    public String invalidPassword(String email, String password) {
+        fieldForEmail.sendKeys(email);
+        fieldForPassword.sendKeys(password);
+        loginButton.click();
+        waitForElementIsVisible(errorPopup);
+        return errorPopup.getText();
+    }
 
+    public String emptyEmail(String password) {
+        fieldForPassword.sendKeys(password);
+        loginButton.click();
+        return emailErrorMessage.getText();
+    }
 
+    public String invalidEmail(String email, String password) {
+        fieldForEmail.sendKeys(email);
+        fieldForPassword.sendKeys(password);
+        loginButton.click();
+        waitForElementIsVisible(errorPopup);
+        return errorPopup.getText();
+    }
 
 
 }
