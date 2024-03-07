@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +46,8 @@ public class LandingPage extends AbstractComponents {
     List<WebElement> enableElements;
     @FindBy(xpath = "//div[@class='form-group mb-4'] //div[@class='invalid-feedback']/div")
     WebElement passwordErrorMessage;
+    @FindBy(xpath = "//div[@id='toast-container']/div")
+    WebElement errorPopup;
 
 
     public String getTextOfLoginTittle() {
@@ -90,11 +93,18 @@ public class LandingPage extends AbstractComponents {
         waitForElementToAppear("https://rahulshettyacademy.com/client/dashboard/dash");
         return productCatalogue;
     }
- public String invalidLogin(String email){
+ public String emptyPassword(String email,String password){
         fieldForEmail.sendKeys(email);
+        fieldForPassword.sendKeys(password);
         loginButton.click();
         return passwordErrorMessage.getText();
  }
+    public String invalidPassword(String email,String password){
+        fieldForEmail.sendKeys(email);
+        fieldForPassword.sendKeys(password);
+        loginButton.click();
+        return errorPopup.getText();
+    }
 
 
 

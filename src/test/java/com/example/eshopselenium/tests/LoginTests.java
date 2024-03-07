@@ -18,9 +18,14 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(productCatalogue.getUrl(),"https://rahulshettyacademy.com/client/dashboard/dash");
     }
     @Test(dataProvider = "getData",groups = {"InvalidLogin"})
-    public void errorLogin(HashMap<String ,String > input){
-        String passwordErrorMessage = landingPage.invalidLogin(input.get("email"));
-        Assert.assertEquals(passwordErrorMessage,"*Password is required");
+    public void emptyPassword(HashMap<String ,String > input){
+        String emptyPassword = landingPage.emptyPassword(input.get("email"),"");
+        Assert.assertEquals(emptyPassword,"*Password is required");
+    }
+    @Test(dataProvider = "getData",groups = {"InvalidLogin"})
+    public void invalidPassword(HashMap<String ,String > input){
+        String errorPopup = landingPage.invalidPassword(input.get("email"),"jhsnfh");
+        Assert.assertEquals(errorPopup,"Incorrect email or password.");
 
     }
 
