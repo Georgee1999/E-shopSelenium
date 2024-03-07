@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="All Test Suite">
+<suite parallel="tests" name="All Test Suite">
     <groups>
         <run>
             <include name="UI"/>
+            <include name="SuccessLogin"/>
         </run>
     </groups>
 
@@ -14,6 +15,15 @@
                 <methods>
                     <include name="visibleTextOfElements"/>
                     <include name="areElementsEnabled"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test thread-count="3" name="Login Test">
+        <classes>
+            <class name="com.example.eshopselenium.tests.LoginTests">
+                <methods>
+                    <include name="login"/>
                 </methods>
             </class>
         </classes>
