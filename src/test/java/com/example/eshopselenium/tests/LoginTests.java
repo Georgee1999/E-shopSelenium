@@ -13,9 +13,15 @@ import java.util.List;
 public class LoginTests extends BaseTest {
 
     @Test(dataProvider = "getData", groups = {"SuccessLogin"})
-    public void login(HashMap<String ,String > input) {
+    public void successLogin(HashMap<String ,String > input) {
         ProductCatalogue productCatalogue = landingPage.loginAplication(input.get("email"),input.get("password"));
         Assert.assertEquals(productCatalogue.getUrl(),"https://rahulshettyacademy.com/client/dashboard/dash");
+    }
+    @Test(dataProvider = "getData",groups = {"InvalidLogin"})
+    public void errorLogin(HashMap<String ,String > input){
+        String passwordErrorMessage = landingPage.invalidLogin(input.get("email"));
+        Assert.assertEquals(passwordErrorMessage,"*Password is required");
+
     }
 
 

@@ -36,7 +36,6 @@ public class LandingPage extends AbstractComponents {
 
     @FindBy(id = "userEmail")
     WebElement fieldForEmail;
-
     @FindBy(id = "userPassword")
     WebElement fieldForPassword;
     @FindBy(css = "a[class='forgot-password-link']")
@@ -44,6 +43,9 @@ public class LandingPage extends AbstractComponents {
     @FindBy(className = "login-wrapper-footer-text")
     WebElement registerLink;
     List<WebElement> enableElements;
+    @FindBy(xpath = "//div[@class='form-group mb-4'] //div[@class='invalid-feedback']/div")
+    WebElement passwordErrorMessage;
+
 
     public String getTextOfLoginTittle() {
         return loginTitle.getText();
@@ -88,8 +90,11 @@ public class LandingPage extends AbstractComponents {
         waitForElementToAppear("https://rahulshettyacademy.com/client/dashboard/dash");
         return productCatalogue;
     }
-
-
+ public String invalidLogin(String email){
+        fieldForEmail.sendKeys(email);
+        loginButton.click();
+        return passwordErrorMessage.getText();
+ }
 
 
 

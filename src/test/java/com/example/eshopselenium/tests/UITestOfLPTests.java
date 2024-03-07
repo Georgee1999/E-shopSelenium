@@ -2,10 +2,9 @@ package com.example.eshopselenium.tests;
 
 import com.example.eshopselenium.testComponents.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class UITestOfLPTest extends BaseTest {
+public class UITestOfLPTests extends BaseTest {
 
 
 
