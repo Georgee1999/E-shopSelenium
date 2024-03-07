@@ -6,26 +6,23 @@
         <run>
             <include name="UI"/>
             <include name="SuccessLogin"/>
+            <include name="InvalidLogin"/>
+            <include name="InvalidPassword"/>
+            <include name="InvalidEmail"/>
         </run>
     </groups>
 
-    <test  thread-count="3" name="UI Tests">
+    <test  thread-count="2" name="UI Tests">
         <classes>
-            <class name="com.example.eshopselenium.tests.UITestOfLPTests">
-                <methods>
-                    <include name="visibleTextOfElements"/>
-                    <include name="areElementsEnabled"/>
-                </methods>
-            </class>
+            <class name="com.example.eshopselenium.tests.UITestOfLPTests"/>
         </classes>
     </test>
-    <test thread-count="3" name="Login Test">
+
+
+
+    <test thread-count="2" name="Login Test">
         <classes>
-            <class name="com.example.eshopselenium.tests.LoginTests">
-                <methods>
-                    <include name="login"/>
-                </methods>
-            </class>
+            <class name="com.example.eshopselenium.tests.LoginTests"/>
         </classes>
     </test>
 
