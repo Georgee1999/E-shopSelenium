@@ -1,6 +1,7 @@
 package com.example.eshopselenium.pageObjects.pageObjectModel;
 
 import com.example.eshopselenium.pageObjects.abstractComponents.AbstractComponents;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,16 +22,19 @@ public class ProductCatalogue extends AbstractComponents {
     WebDriver driver;
     Actions actions;
 
-    public ProductCatalogue(WebDriver driver,Actions actions) {
+    public ProductCatalogue(WebDriver driver, Actions actions) {
         super(driver);
         this.driver = driver;
         this.actions = actions;
         PageFactory.initElements(driver, this);
     }
 
-    public String getUrl() {
-        return driver.getCurrentUrl();
-    }
+
+
+    By addToCart = By.cssSelector(".card-body button:last-of-type");
+
+    @FindBy(id = "toast-container")
+    WebElement toastMessage;
 
 
     @FindBy(id = "res")
@@ -50,6 +54,8 @@ public class ProductCatalogue extends AbstractComponents {
     WebElement inputPriceMin;
     @FindBy(css = "div[class='py-2 border-bottom ml-3'] input[placeholder='Max Price']")
     WebElement inputPriceMax;
+    @FindBy(css = ".ng-animating")
+    WebElement spinner;
 
     public Integer getProductsCount() {
         return products.size();
@@ -67,7 +73,6 @@ public class ProductCatalogue extends AbstractComponents {
         return tittleOfProducts.getText();
     }
 
-
     public List<Integer> priceOfProducts() {
         return priceOfProducts.stream()
                 //flatMap, který "zrovná" strukturu z Stream<String[]> na Stream<String>
@@ -82,6 +87,22 @@ public class ProductCatalogue extends AbstractComponents {
         inputPriceMax.sendKeys(max);
         actions.keyDown(Keys.ENTER).build().perform();
         Thread.sleep(1000);
+    }
+
+    public WebElement getProductByName(String productName) {
+        WebElement productTittle = products.stream()
+                .filter(p->p.findElement(By.cssSelector("b"))
+                .getText().equals(productName)).findFirst()
+                .orElse(null);
+        return productTittle;
+    }
+    public void addToCard(String productName) throws InterruptedException {
+        WebElement productTittle = getProductByName(productName);
+        productTittle.findElement(addToCart).click();
+
+        waitForElementIsVisible(toastMessage);
+        waitForElementToDisappear(spinner);
+
     }
 
 

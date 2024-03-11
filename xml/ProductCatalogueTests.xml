@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite parallel="tests" name="All Test Suite">
+    <groups>
+        <run>
+            <include name="Functional"/>
+            <include name="UI"/>
+        </run>
+    </groups>
 
+    <test thread-count="2" name="Functional Test">
+        <classes>
+            <class name="com.example.eshopselenium.tests.productCatalogue.FunctionalTests"/>
+        </classes>
+    </test>
+
+    <test thread-count="2" name="UI Test">
+        <classes>
+            <class name="com.example.eshopselenium.tests.productCatalogue.UIofPCTests"/>
+        </classes>
+    </test>
 </suite>
