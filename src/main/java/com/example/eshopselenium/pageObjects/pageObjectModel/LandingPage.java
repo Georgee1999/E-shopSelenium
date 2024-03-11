@@ -95,7 +95,7 @@ public class LandingPage extends AbstractComponents {
         fieldForEmail.sendKeys(email);
         fieldForPassword.sendKeys(password);
         loginButton.click();
-        ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+        ProductCatalogue productCatalogue = new ProductCatalogue(driver,new Actions(driver));
         waitForElementToAppear("https://rahulshettyacademy.com/client/dashboard/dash");
         return productCatalogue;
     }
