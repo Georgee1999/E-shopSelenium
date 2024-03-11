@@ -14,7 +14,7 @@
 
     <test  thread-count="2" name="UI Tests">
         <classes>
-            <class name="com.example.eshopselenium.tests.UITestOfLPTests"/>
+            <class name="com.example.eshopselenium.tests.landingPage.UIofLPTests"/>
         </classes>
     </test>
 
@@ -22,7 +22,7 @@
 
     <test thread-count="2" name="Login Test">
         <classes>
-            <class name="com.example.eshopselenium.tests.LoginTests"/>
+            <class name="com.example.eshopselenium.tests.landingPage.LoginTests"/>
         </classes>
     </test>
 

@@ -1,6 +1,7 @@
 package com.example.eshopselenium.testComponents;
 
 import com.example.eshopselenium.pageObjects.pageObjectModel.LandingPage;
+import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
@@ -8,8 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -76,5 +80,26 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.close();
+    }
+
+
+
+    @DataProvider
+    public Object[][] getData() throws IOException {
+
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\com\\example\\eshopselenium\\data\\LoginData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
+    }
+    @DataProvider
+    public Object[][] getInvalidData() throws IOException {
+
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\com\\example\\eshopselenium\\data\\InvalidLoginData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
     }
 }

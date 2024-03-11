@@ -91,7 +91,7 @@ public class LandingPage extends AbstractComponents {
         return registerButton.getCssValue("background-color");
     }
 
-    public ProductCatalogue loginAplication(String email, String password) {
+    public ProductCatalogue loginApplication(String email, String password) {
         fieldForEmail.sendKeys(email);
         fieldForPassword.sendKeys(password);
         loginButton.click();

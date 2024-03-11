@@ -1,10 +1,10 @@
-package com.example.eshopselenium.tests;
+package com.example.eshopselenium.tests.landingPage;
 
 import com.example.eshopselenium.testComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UITestOfLPTests extends BaseTest {
+public class UIofLPTests extends BaseTest {
 
 
 
