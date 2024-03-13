@@ -1,6 +1,6 @@
 package com.example.eshopselenium.tests.landingPage;
 
-import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
+import com.example.eshopselenium.pageObjectModel.ProductCatalogue;
 import com.example.eshopselenium.testComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;

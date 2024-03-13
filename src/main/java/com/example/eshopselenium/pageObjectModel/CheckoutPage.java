@@ -1,6 +1,6 @@
-package com.example.eshopselenium.pageObjects.pageObjectModel;
+package com.example.eshopselenium.pageObjectModel;
 
-import com.example.eshopselenium.pageObjects.abstractComponents.AbstractComponents;
+import com.example.eshopselenium.abstractComponents.AbstractComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

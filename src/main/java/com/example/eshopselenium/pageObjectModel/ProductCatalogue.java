@@ -1,6 +1,6 @@
-package com.example.eshopselenium.pageObjects.pageObjectModel;
+package com.example.eshopselenium.pageObjectModel;
 
-import com.example.eshopselenium.pageObjects.abstractComponents.AbstractComponents;
+import com.example.eshopselenium.abstractComponents.AbstractComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

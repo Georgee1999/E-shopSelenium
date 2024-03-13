@@ -1,8 +1,8 @@
-package com.example.eshopselenium.pageObjects.abstractComponents;
+package com.example.eshopselenium.abstractComponents;
 
-import com.example.eshopselenium.pageObjects.pageObjectModel.CartPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.LandingPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.OrderPage;
+import com.example.eshopselenium.pageObjectModel.CartPage;
+import com.example.eshopselenium.pageObjectModel.LandingPage;
+import com.example.eshopselenium.pageObjectModel.OrderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

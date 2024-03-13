@@ -1,6 +1,6 @@
 package com.example.eshopselenium.testComponents;
 
-import com.example.eshopselenium.pageObjects.pageObjectModel.LandingPage;
+import com.example.eshopselenium.pageObjectModel.LandingPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -38,16 +39,19 @@ public class BaseTest {
 
         if (browserName.contains("chrome")) {
             ChromeOptions options = new ChromeOptions();
-           // if (browserName.contains("headless")) {
-           //     options.addArguments("headless");
-           // }
+             if (browserName.contains("headless")) {
+                 options.addArguments("headless");
+             }
+
             driver = new ChromeDriver(options);
+
             driver.manage().window().maximize();//.setSize(new Dimension(1440,900));// Fullscreen
         } else if (browserName.equals("firefox")) {
             //Firefox
         } else if (browserName.equals("edge")) {
             //Edge
             driver = new EdgeDriver();
+            driver.manage().window().maximize();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
         return driver;
@@ -92,7 +96,6 @@ public class BaseTest {
     }
 
 
-
     @DataProvider
     public Object[][] getData() throws IOException {
 
@@ -102,6 +105,7 @@ public class BaseTest {
                 //{data.get(1)}
         };
     }
+
     @DataProvider
     public Object[][] getInvalidData() throws IOException {
 

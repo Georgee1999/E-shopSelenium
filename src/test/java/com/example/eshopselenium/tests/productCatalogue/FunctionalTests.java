@@ -1,9 +1,9 @@
 package com.example.eshopselenium.tests.productCatalogue;
 
-import com.example.eshopselenium.pageObjects.pageObjectModel.CartPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.CheckoutPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.ConfirmationPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
+import com.example.eshopselenium.pageObjectModel.CartPage;
+import com.example.eshopselenium.pageObjectModel.CheckoutPage;
+import com.example.eshopselenium.pageObjectModel.ConfirmationPage;
+import com.example.eshopselenium.pageObjectModel.ProductCatalogue;
 import com.example.eshopselenium.testComponents.BaseTest;
 import com.example.eshopselenium.testComponents.Retry;
 import org.testng.Assert;
