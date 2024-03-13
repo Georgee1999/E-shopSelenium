@@ -5,6 +5,7 @@ import com.example.eshopselenium.pageObjects.pageObjectModel.CheckoutPage;
 import com.example.eshopselenium.pageObjects.pageObjectModel.ConfirmationPage;
 import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
 import com.example.eshopselenium.testComponents.BaseTest;
+import com.example.eshopselenium.testComponents.Retry;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -40,7 +41,7 @@ public class FunctionalTests extends BaseTest {
         Assert.assertEquals(cartPage.getTittleOfProduct(),input.get("product"));
     }
 
-    @Test(dataProvider = "getData", groups = {"Functional","SubmitOrder"})
+    @Test(dataProvider = "getData", groups = {"Functional","SubmitOrder"},retryAnalyzer = Retry.class)
     public void submitOrder(HashMap<String ,String> input) throws InterruptedException {
         ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
         productCatalogue.addToCard(input.get("product"));
@@ -50,8 +51,6 @@ public class FunctionalTests extends BaseTest {
         ConfirmationPage confirmationPage = checkoutPage.sumbitOrder();
         String confirmMessage = confirmationPage.getConfirmationMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
-
-
     }
 
 

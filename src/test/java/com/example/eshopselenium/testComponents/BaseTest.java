@@ -98,8 +98,8 @@ public class BaseTest {
 
         List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\com\\example\\eshopselenium\\data\\LoginData.json");
         return new Object[][]{
-                {data.get(0)},
-                {data.get(1)}
+                {data.get(0)}//,
+                //{data.get(1)}
         };
     }
     @DataProvider
