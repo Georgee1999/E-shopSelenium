@@ -43,6 +43,7 @@ public class FunctionalTests extends BaseTest {
 
     @Test(dataProvider = "getData", groups = {"Functional","SubmitOrder"},retryAnalyzer = Retry.class)
     public void submitOrder(HashMap<String ,String> input) throws InterruptedException {
+        //New comments added
         ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
         productCatalogue.addToCard(input.get("product"));
         CartPage cartPage = productCatalogue.goToCartPage();
