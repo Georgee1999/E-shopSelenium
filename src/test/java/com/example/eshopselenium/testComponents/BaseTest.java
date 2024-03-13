@@ -4,6 +4,7 @@ import com.example.eshopselenium.pageObjectModel.LandingPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -39,20 +40,18 @@ public class BaseTest {
 
         if (browserName.contains("chrome")) {
             ChromeOptions options = new ChromeOptions();
-             if (browserName.contains("headless")) {
-                 options.addArguments("headless");
-             }
-
+            if (browserName.contains("headless")) {
+                options.addArguments("headless");
+            }
             driver = new ChromeDriver(options);
-
-            driver.manage().window().maximize();//.setSize(new Dimension(1440,900));// Fullscreen
+            driver.manage().window().setSize(new Dimension(1440,900));
         } else if (browserName.equals("firefox")) {
             //Firefox
         } else if (browserName.equals("edge")) {
             //Edge
             driver = new EdgeDriver();
-            driver.manage().window().maximize();
         }
+        driver.manage().window().maximize(); //.setSize(new Dimension(1440,900));// Fullscreen
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
         return driver;
     }
