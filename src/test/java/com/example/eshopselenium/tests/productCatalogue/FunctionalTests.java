@@ -1,6 +1,8 @@
 package com.example.eshopselenium.tests.productCatalogue;
 
 import com.example.eshopselenium.pageObjects.pageObjectModel.CartPage;
+import com.example.eshopselenium.pageObjects.pageObjectModel.CheckoutPage;
+import com.example.eshopselenium.pageObjects.pageObjectModel.ConfirmationPage;
 import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
 import com.example.eshopselenium.testComponents.BaseTest;
 import org.testng.Assert;
@@ -36,6 +38,33 @@ public class FunctionalTests extends BaseTest {
         String url = cartPage.getUrl();
         Assert.assertEquals(url,"https://rahulshettyacademy.com/client/dashboard/cart");
         Assert.assertEquals(cartPage.getTittleOfProduct(),input.get("product"));
+    }
+
+    @Test(dataProvider = "getData", groups = {"Functional","SubmitOrder"})
+    public void submitOrder(HashMap<String ,String> input) throws InterruptedException {
+        ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
+        productCatalogue.addToCard(input.get("product"));
+        CartPage cartPage = productCatalogue.goToCartPage();
+        CheckoutPage checkoutPage = cartPage.goToCheckout();
+        checkoutPage.selectCountry("cz");
+        ConfirmationPage confirmationPage = checkoutPage.sumbitOrder();
+        String confirmMessage = confirmationPage.getConfirmationMessage();
+        Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
+
+
+    }
+
+
+
+
+
+
+    @Test(groups = {"Functional"})
+    public void logOut(){
+        ProductCatalogue productCatalogue = landingPage.loginApplication("frank0@gmail.com", "Georgesmith1");
+        productCatalogue.logOut();
+        String url = productCatalogue.getUrl();
+        Assert.assertEquals(url,"https://rahulshettyacademy.com/client/auth/login");
     }
 
 

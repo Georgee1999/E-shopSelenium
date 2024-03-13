@@ -99,11 +99,11 @@ public class ProductCatalogue extends AbstractComponents {
     public void addToCard(String productName) throws InterruptedException {
         WebElement productTittle = getProductByName(productName);
         productTittle.findElement(addToCart).click();
-
         waitForElementIsVisible(toastMessage);
         waitForElementToDisappear(spinner);
-
     }
 
-
+    public void logOut(){
+        clickToSignOut();
+    }
 }

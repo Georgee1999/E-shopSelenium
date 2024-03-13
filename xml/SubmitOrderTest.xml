@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite  name="Functional Tests">
+    <groups>
+        <run>
+            <include name="SubmitOrder"/>
+        </run>
+    </groups>
+    <listeners>
+        <listener class-name="com.example.eshopselenium.testComponents.Listeners"/>
+    </listeners>
+
+    <test name="Submit Order Test">
+        <classes>
+            <class name="com.example.eshopselenium.tests.productCatalogue.FunctionalTests"/>
+        </classes>
+    </test>
+
+</suite>

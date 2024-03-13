@@ -1,19 +1,18 @@
 package com.example.eshopselenium.testComponents;
 
 import com.example.eshopselenium.pageObjects.pageObjectModel.LandingPage;
-import com.example.eshopselenium.pageObjects.pageObjectModel.ProductCatalogue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +25,7 @@ import java.util.Properties;
 
 public class BaseTest {
 
-    WebDriver driver;
+    public WebDriver driver;
     public LandingPage landingPage;
 
     public WebDriver initializeDriver() throws IOException {
@@ -70,11 +69,21 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public LandingPage launchApplication() throws IOException {
-
         driver = initializeDriver();
         landingPage = new LandingPage(driver);
         landingPage.goTo();
         return landingPage;
+    }
+
+    public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+        System.out.println("Driver instance: " + driver);
+        System.out.println("getScreenshot called for: " + testCaseName); // Přidáno pro debugování
+
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+        FileUtils.copyFile(source, file);
+        return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
     }
 
     @AfterMethod(alwaysRun = true)
