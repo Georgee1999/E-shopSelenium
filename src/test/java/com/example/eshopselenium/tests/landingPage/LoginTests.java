@@ -13,6 +13,7 @@ public class LoginTests extends BaseTest {
     public void successLogin(HashMap<String, String> input) {
         ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
         Assert.assertEquals(productCatalogue.getUrl(), "https://rahulshettyacademy.com/client/dashboard/dash");
+        // New Comments added
     }
     @Test(dataProvider = "getInvalidData", groups = {"InvalidLogin"})
     public void invalidLogin(HashMap<String,String> input){
